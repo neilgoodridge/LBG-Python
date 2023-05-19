@@ -1,88 +1,103 @@
-# README.md
+# REST API starter
 
----
-
-# LBG-Python-API
-
-This repository is for Python API development related to the Lloyds Banking Group (LBG). The project aims to simplify the interaction with LBG's services by creating a comprehensive and easy-to-use API.
-
----
-
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Documentation](#documentation)
-5. [Tests](#tests)
-6. [Contribute](#contribute)
-7. [License](#license)
-
----
-
-## Introduction
-
-The `LBG-Python-API` is a Python-based API for interacting with the services provided by the Lloyds Banking Group. This project aims to simplify and streamline the process of making requests to the bank's services, helping developers integrate LBG's services into their own applications with ease.
-
----
+This application is the start point for Sprint 1 of the Lloyds Bank Group Modern Engineering Bootcamp Project Specification.
 
 ## Installation
 
-The `LBG-Python-API` can be installed using `pip`:
+To initialise the project you will need to install several dependencies, open up a git bash terminal from the repo directory and run the command:
 
-```bash
-pip install LBG-Python-API
-```
+~~~ bash
+pip install -r requirements.txt
+~~~
 
-This library requires Python 3.7 or higher.
+## Running the application
 
----
+In order to run the application, from your git bash terminal run:
 
-## Usage
+~~~ bash
+python lbg.py
+API Listening on http://localhost:8080
+~~~
 
-Here's a basic example of using the `LBG-Python-API`:
+## Running on a different port
 
-```python
-from LBG import LBG_API
+To start the application on an alternative port to the default (8080) from your git bash terminal run:
 
-# Create an instance of the API class
-api = LBG_API('your_api_key')
+~~~ bash
+python lbg.py --PORT 9000
+API Listening on http://localhost:9000
+~~~
 
-# Use the instance to call LBG's services
-response = api.get_account_info('your_account_id')
+## Stopping the application
 
-# Print the response
-print(response)
-```
+In order to stop the application from the git bash terminal that is running the server press ``CTRL`` + ``C``
 
----
+## Functionality
 
-## Documentation
+### Through the browser
 
-Detailed documentation for `LBG-Python-API` is available in the [docs](/docs) directory. It provides in-depth information on installation, usage, available methods, response formats, and more.
+In order to interact with this application through a browser navigate to http://localhost:8080/index.html
 
----
+There is a full CRUD functionality through the buttons on the web page.
 
-## Tests
+### CREATE
 
-We use `pytest` for testing. To run tests:
+To create the example product run the command:
 
-```bash
-pytest
-```
+~~~ bash
+curl -s -X POST http://localhost:8080/create -H 'Content-type:application/json' -d '{"name":"example product", "description":"this is an example", "price":9.99}'
+~~~
 
----
+### READ (all)
 
-## Contribute
+To read all of the products run the command:
 
-Contributions to `LBG-Python-API` are welcome and appreciated. Please read our [contributing guidelines](CONTRIBUTING.md) before submitting a pull request.
+~~~ bash
+curl -s -X GET http://localhost:8080/read
+~~~
 
----
+### READ (one)
 
-## License
+To read one of the products run the command:
 
-The `LBG-Python-API` is released under the [MIT License](LICENSE.md).
+~~~ bash
+curl -s -X GET http://localhost:8080/read/<id>
+~~~
 
----
+n.b: For these commands anything surrounded by angled braces <> needs to be replaced by you
 
-For any further queries, please contact the repository owner [Neil Goodridge](https://github.com/neilgoodridge).
+### UPDATE
+
+To update one of the products run the command:
+
+~~~ bash
+curl -s -X PUT http://localhost:8080/update/<id> -H 'Content-type:application/json'  -d '{"name":"updated product", "description":"its brand new", "price":99.99}'
+~~~
+
+n.b: For these commands anything surrounded by angled braces <> needs to be replaced by you
+
+### DELETE
+
+To delete one of the products run the command:
+
+~~~ bash
+curl -s -X DELETE http://localhost:8080/delete/<id>
+~~~
+
+n.b: For these commands anything surrounded by angled braces <> needs to be replaced by you
+
+## Testing
+
+To run unit/integration tests on this project, make sure the server is running.
+In a new terminal window use the command
+
+~~~ bash
+python lbg.test.py
+~~~
+
+To run acceptance tests on this project, you must first download a webdriver for the browser of your choice and update the path in `.\features\environment.py`. Then make sure the server is running.
+In a new terminal window use the command
+
+~~~ bash
+behave .\features\restapp.feature
+~~~
