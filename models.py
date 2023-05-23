@@ -33,7 +33,7 @@ class ItemModel(db.Model):
         return f"'description':{self.description},'name':{self.name},'price':{self.price},'_id':{self._id}"
 
     @property
-    def serialize(self)
+    def serialize(self):
         """
         serializable format for object
         """
