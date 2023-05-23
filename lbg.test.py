@@ -9,10 +9,12 @@ import unittest
 from lbg import item_builder
 from flask_api import status
 import requests
-from sys import argv
+# from sys import argv
 
-PORT = int(argv[1])
+
+PORT = 5000
 BASE_URL = f"http://localhost:{PORT}"
+
 
 class MyLbgApiTestCase(unittest.TestCase):
     
