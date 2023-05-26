@@ -8,9 +8,6 @@ app:
     -8080:8080
   depends on:
     -db
-  environment:
-    - SQLALCHEMY_DATABASE_URI=sqlite:///data.db
-    - SQLALCHEMY_TRACK_MODIFICATIONS=FALSE
     
   db:
     image: postgres:latest
