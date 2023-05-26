@@ -24,7 +24,7 @@ mimetypes.add_type('text/javascript', '.js')
 
 
 # get app to serve static files from the public directory
-app = Flask(__name__, static_url_path=f'/', static_folder='./static')
+app = Flask(__name__, static_url_path=f'/', static_folder='./static'
 
 # set up a new database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -216,6 +216,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     PORT = args.PORT
-    HOST = 'localhost'
+    HOST = '0.0.0.0'
     print(f'API Listening on http://{HOST}:{PORT}')
     app.run(host=HOST, port=PORT, debug=True)
