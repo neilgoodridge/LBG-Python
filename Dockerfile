@@ -1,5 +1,6 @@
 FROM python:latest
+WORKDIR /app
 COPY . .
 RUN pip3 install -r requirements.txt
-EXPOSE 5000
-ENTRYPOINT  ["python", "lbg.py"]
+ENV PORT=8081
+ENTRYPOINT  python lbg.py --PORT ${PORT}
