@@ -21,6 +21,6 @@ app:
   nginx:
     image: nginx:alpine
     ports:
-      - target: 80
+    - target: 80
       protocol: tcp
       
