@@ -1,0 +1,26 @@
+version: latest
+services:
+app:
+  build:
+    context:
+    dockerfile: Dockerfile
+  ports:
+    -8080:8080
+  depends on:
+    -db
+  environment:
+    - SQLALCHEMY_DATABASE_URI=sqlite:///data.db
+    - SQLALCHEMY_TRACK_MODIFICATIONS=FALSE
+    
+  db:
+    image: postgres:latest
+    volumes:
+      -db./data:/var/lib/postgresql/data
+    environment:
+    
+  nginx:
+    image: nginx:alpine
+    ports:
+      - target: 80
+      protocol: tcp
+      
